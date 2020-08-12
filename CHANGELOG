@@ -1,3 +1,6 @@
+- [Changed] Ubuntu service
+- [Added] Ubuntu package sssd-common
+
 * Thu Apr 23 2020 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.1-0
 - Ensure that EL6/7+ use the 'files' or 'local' provider as is appropriate for
   their platform

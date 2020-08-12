@@ -5,15 +5,23 @@
 #
 class sssd::service {
 
-  unless member($facts['init_systems'], 'systemd') {
-    file { '/etc/init.d/sssd':
-      ensure  => 'file',
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0755',
-      seltype => 'sssd_initrc_exec_t',
-      source  => 'puppet:///modules/sssd/sssd.sysinit',
-      notify  => Service['sssd']
+  case $facts['os']['name'] {
+    'RedHat','CentOS','OracleLinux': {
+      file { '/etc/init.d/sssd':
+        ensure  => 'file',
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0755',
+        seltype => 'sssd_initrc_exec_t',
+        source  => 'puppet:///modules/sssd/sssd.sysinit',
+        notify  => Service['sssd']
+      }
+    }
+    'Ubuntu': {
+      #
+    }
+    default: {
+      fail("${::operatingsystem} is not yet supported by ${module_name}")
     }
   }
 

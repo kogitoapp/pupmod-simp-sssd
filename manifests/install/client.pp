@@ -18,7 +18,7 @@ class sssd::install::client (
   else {
     fail("OS '${facts['os']['name']}' not supported by '${module_name}'")
   }
-  package { 'sssd-client':
+  package { $_package:
     ensure => $ensure
   }
 }
