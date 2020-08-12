@@ -18,7 +18,23 @@ class sssd::service {
       }
     }
     'Ubuntu': {
-      #
+      file { '/etc/init.d/sssd':
+        ensure  => 'file',
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0755',
+        seltype => 'sssd_initrc_exec_t',
+        source  => 'puppet:///modules/sssd/ubuntu/sssd.sysinit',
+        notify  => Service['sssd']
+      }
+      file { '/etc/default/sssd':
+        ensure  => 'file',
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0640',
+        source  => 'puppet:///modules/sssd/ubuntu/sssd.default',
+        notify  => Service['sssd']
+      }
     }
     default: {
       fail("${::operatingsystem} is not yet supported by ${module_name}")

@@ -1,3 +1,4 @@
+- [Added] Ubuntu init and default file
 - [Changed] Ubuntu service
 - [Added] Ubuntu package sssd-common
 
