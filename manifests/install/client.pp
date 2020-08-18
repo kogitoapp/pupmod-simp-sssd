@@ -12,7 +12,7 @@ class sssd::install::client (
   if $facts['os']['name'] in ['RedHat','CentOS','OracleLinux'] {
     $_package = 'sssd-client'
   }
-  elsif $facts['os']['name'] in ['Ubuntu'] {
+  elsif $facts['os']['name'] in ['Ubuntu','Debian'] {
     $_package = 'sssd-common'
   }
   else {

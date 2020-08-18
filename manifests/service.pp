@@ -17,14 +17,14 @@ class sssd::service {
         notify  => Service['sssd']
       }
     }
-    'Ubuntu': {
+    'Ubuntu','Debian': {
       file { '/etc/init.d/sssd':
         ensure  => 'file',
         owner   => 'root',
         group   => 'root',
         mode    => '0755',
         seltype => 'sssd_initrc_exec_t',
-        source  => 'puppet:///modules/sssd/ubuntu/sssd.sysinit',
+        source  => 'puppet:///modules/sssd/debian/sssd.sysinit',
         notify  => Service['sssd']
       }
       file { '/etc/default/sssd':
@@ -32,7 +32,7 @@ class sssd::service {
         owner   => 'root',
         group   => 'root',
         mode    => '0640',
-        source  => 'puppet:///modules/sssd/ubuntu/sssd.default',
+        source  => 'puppet:///modules/sssd/debian/sssd.default',
         notify  => Service['sssd']
       }
     }
